@@ -1,0 +1,15 @@
+For MacOS
+---------
+brew install postgresql
+initdb /usr/local/var/postgres
+cp /usr/local/Cellar/postgresql/9.2.4/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+
+sudo mkdir /var/run/postgresql.socket
+export PGHOST=/var/run/postgresql.socket
+sudo chown $USER /var/run/postgresql.socket
+open /usr/local/var/postgres/postgresql.conf
+add "unix_socket_directory = '/var/run/postgresql.socket'"
+# restart
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log restart
