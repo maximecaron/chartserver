@@ -3,6 +3,7 @@ package main
 import (
         "github.com/ant0ine/go-json-rest"
         "net/http"
+        "github.com/lib/pq"
 )
 
 type User struct {
